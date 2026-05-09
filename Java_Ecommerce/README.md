@@ -1,4 +1,6 @@
-# 1. Datenmodell
+# Topics
+
+## 1. Datenmodell
 
 Ziel-Themen:
 
@@ -6,7 +8,7 @@ Ziel-Themen:
 - Connection Pooling
 - Query Analyse
 
-# 2. REST API
+## 2. REST API
 
 Ziel-Themen:
 
@@ -16,7 +18,7 @@ Ziel-Themen:
 - Pagination implementieren (erst Offset, dann Cursor)
 - API Versioning: Eine Strategie wählen und begründen
 
-# 3. Indexierung & Query-Optimierung
+## 3. Indexierung & Query-Optimierung
 
 Ziel-Themen:
 
@@ -25,7 +27,7 @@ Ziel-Themen:
 - Bewusst N+1 einbauen -> Queries zählen -> beheben -> Queries zählen
 - Connection Pool konfigurieren und Pool-Größe begründen
 
-# 4. DB-Erweiterung
+## 4. DB-Erweiterung
 
 Ziel-Themen:
 
@@ -33,13 +35,13 @@ Ziel-Themen:
 - Audit Trail (createdat, updatedat, created_by)
 - Eine Hierarchie modellieren (z.Bsp. Produktkategorien)
 
-# 5. API Security Basics
+## 5. API Security Basics
 
 Ziel-Themen:
 
 - JWT-Authentifizierung hinzufügen
 
-# Checkpoint
+## Checkpoint
 
 Was kann ich:
 
@@ -52,8 +54,7 @@ Was habe ich gelernt:
 
 [x] ...
 
-
-# 6. Test-Typen & TDD
+## 6. Test-Typen & TDD
 
 Ziel-Themen:
 
@@ -61,7 +62,7 @@ Ziel-Themen:
 - Test Doubles einbauen: bewusst unterscheiden was Stub vs Mock ist
 - AAA-Pattern konsequent verwenden
 
-# 7. Integration Tests & Testbare Architektur
+## 7. Integration Tests & Testbare Architektur
 
 Ziel-Themen:
 
@@ -69,7 +70,7 @@ Ziel-Themen:
 - Integration Tests für API-Layer (echter HTTP-Stack, aber mock DB)
 - Test Coverage Report generieren und analysieren
 
-# 8. CI-Pipeline
+## 8. CI-Pipeline
 
 Ziel-Themen:
 
@@ -77,7 +78,7 @@ Ziel-Themen:
 - Integration-Tests bei Push auf main
 - Test-Coverage Report als Artifact speichern
 
-# 9. Deployment Strategien & Feature Flags
+## 9. Deployment Strategien & Feature Flags
 
 Ziel-Themen:
 
@@ -85,20 +86,19 @@ Ziel-Themen:
 - Demployment in eine Staging-Umgebung (kann lokal simuliert sein)
 - Rollback-Prozess dokumentieren
 
-# 10. DB Internals & Skalierung
+## 10. DB Internals & Skalierung
 
 Ziel-Themen:
 
 - Dokumentiere wie du ein System mit 10 Mio. Usern skalieren würdest
-	- Welche DB-Strategie? (Read Replicas, Sharding?)
-	- Wann denormalisieren?
-	- Welche Daten in welchen Datenbanken? (Polyglot Persistence)
-	
-# 11. HTTP vertiefung & Load Balancing
+- Welche DB-Strategie? (Read Replicas, Sharding?)
+- Wann denormalisieren?
+- Welche Daten in welchen Datenbanken? (Polyglot Persistence)
+
+## 11. HTTP vertiefung & Load Balancing
 
 Ziel-Themen:
 
 - Rate Limiting implementieren
-	- Token Bucket Algorithmus (oder Sliding Window)
-	- Bewusst: welche Endpunkte brauchen Rate Limiting? Warum?
-	
+- Token Bucket Algorithmus (oder Sliding Window)
+- Bewusst: welche Endpunkte brauchen Rate Limiting? Warum?

@@ -1,4 +1,6 @@
-# 1. Go vertiefen
+# Topics
+
+## 1. Go vertiefen
 
 Ziel-Themen:
 
@@ -8,11 +10,11 @@ Ziel-Themen:
 - Error Handling explizit (kein try-catch)
 - Vergleich mit Java: Was ist anders? Was ist besser/schlechter?
 
-# 2. Concurrency
+## 2. Concurrency
 
 Ziel-Themen:
 
 - Concurrency Probleme reproduzieren
-	- Race Condition absichtlich erzeugen -> dann fixen
-	- Deadlock absichtlich erzeugen -> dann fixen
-	- Thread Pool konfigurieren und Pool Exhaustion beobachten
+- Race Condition absichtlich erzeugen -> dann fixen
+- Deadlock absichtlich erzeugen -> dann fixen
+- Thread Pool konfigurieren und Pool Exhaustion beobachten

@@ -1,4 +1,6 @@
-# 1. Creational & Structural Patterns
+# Topics
+
+## 1. Creational & Structural Patterns
 
 Ziel-Themen:
 
@@ -7,7 +9,7 @@ Ziel-Themen:
 - Repository Pattern einbauen
 - Builder für komplexe Objekte verwenden
 
-# 2. Behavioral Patterns & Architekturmuster
+## 2. Behavioral Patterns & Architekturmuster
 
 Ziel-Themen:
 
@@ -15,7 +17,7 @@ Ziel-Themen:
 - Observer/Event für Click-Tracking (entkoppelt)
 - Code Review des bisherigen Codes: Code Smells identifizieren
 
-# 3. Hexagonal Architektur & Clean Architecture
+## 3. Hexagonal Architektur & Clean Architecture
 
 Ziel-Themen:
 
@@ -25,40 +27,40 @@ Ziel-Themen:
 - Sekundäre Ports: DB Adapter (Repository Interface)
 - Dokumentiere: Was hat sich verändert? Was ist testbar?
 
-# 4. Code Smells & Refactoring
+## 4. Code Smells & Refactoring
 
 Ziel-Themen:
 
 - vollständiger Code Review - alle Code Smells dokumentieren
 - einen identifizierten Code Smell refacotrn (dokumentiere vorher/nacher)
 
-# 5. Skalierungsgrundlagen & CAP-Theorem
+## 5. Skalierungsgrundlagen & CAP-Theorem
 
 Ziel-Themen:
 
 - Architektur-Dokumentation:
-	- Was würde passieren bei 10x Last?
-	- Wo ist der Bottleneck?
-	- Wie würdest du skalieren? (Schriftlich, nicht implementieren)
-	
-# 6. Review & Projekt abschluss
+- Was würde passieren bei 10x Last?
+- Wo ist der Bottleneck?
+- Wie würdest du skalieren? (Schriftlich, nicht implementieren)
+
+## 6. Review & Projekt abschluss
 
 Ziel-Themen:
 
 - Projekt vollständig dokumentieren:
-	- Architekturdiagramm (C4 Level 1 & 2)
-	- Entscheidungen begründen (ADR für die wichtigsten Entscheidungen)
-	- Trade-offs dokumentieren
+- Architekturdiagramm (C4 Level 1 & 2)
+- Entscheidungen begründen (ADR für die wichtigsten Entscheidungen)
+- Trade-offs dokumentieren
 - Review des gelernten
 
-# Checkpoint
+## Checkpoint
 
 - [] Du kannst alle GoF-Patterns benennen und ihre Anwendungsfälle erklären
 - [] Du kannst ein System in Ports & Adapters strukturieren
 - [] Projekt ist fertig mit Architektur-Dokumentation
 - [] Du kannst Trade-offs zwischen Monolith und Microservices benennen
 
-# 7. Projekt erweitern
+## 7. Projekt erweitern
 
 Ziel-Themen:
 
@@ -66,7 +68,7 @@ Ziel-Themen:
 - TTL-Strategie definieren und begründen
 - Cache Miss Handling implementieren
 
-# 8. Performance-Analyse
+## 8. Performance-Analyse
 
 Ziel-Themen:
 
@@ -74,7 +76,7 @@ Ziel-Themen:
 - Bottleneck identifizieren (wo ist der Engpass?)
 - Mindestens einen Bottleneck beheben und wieder messen
 
-# 9. Message Queues & Pub/Sub
+## 9. Message Queues & Pub/Sub
 
 Ziel-Themen:
 
@@ -83,25 +85,25 @@ Ziel-Themen:
 - Outbox Pattern konzeptionell dokumentieren: "So würde ich das mit einer echten Queue bauen"
 - Dead Letter Queue: Was würde passieren wenn der Consumer ausfällt?
 
-# 10. Observability & Security
+## 10. Observability & Security
 
 Ziel-Themen:
 
 - Observability einbauen
-	- Structured Logging mit Correlation IDs
-	- Metrics: Latenz, Fehlerrate, Durchsatz (mindestens als Konzept implementieren)
-	- Alerting-Strategie dokumentieren: Worauf würdest du aletieren?
-	
-# 11. Security in depth
+- Structured Logging mit Correlation IDs
+- Metrics: Latenz, Fehlerrate, Durchsatz (mindestens als Konzept implementieren)
+- Alerting-Strategie dokumentieren: Worauf würdest du aletieren?
+
+## 11. Security in depth
 
 Ziel-Themen:
 
 - Security Review
-	- Checklist aller OWASP Top 10 für das eigene Projekt
-	- Was ist schon abgedeckt? Was fehlt?
-	- Mindestens: Input Validation, Secrets aus dem Code entfernen, HTTPS-only
-	
-# 12. Großes System Design
+- Checklist aller OWASP Top 10 für das eigene Projekt
+- Was ist schon abgedeckt? Was fehlt?
+- Mindestens: Input Validation, Secrets aus dem Code entfernen, HTTPS-only
+
+## 12. Großes System Design
 
 Ziel-Themen:
 
@@ -110,4 +112,3 @@ Ziel-Themen:
 - ADRs für alle wichtigen Entscheidungen
 - Performance-Test-Ergebnisse dokumentieren
 - Review des gelernten
-

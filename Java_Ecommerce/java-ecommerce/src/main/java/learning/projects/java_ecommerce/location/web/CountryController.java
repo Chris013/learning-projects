@@ -5,9 +5,13 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import learning.projects.java_ecommerce.location.assembler.CountryModelAssembler;
 import learning.projects.java_ecommerce.location.dto.CountryDto;
 import learning.projects.java_ecommerce.location.service.CountryService;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,15 +22,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CountryController {
 
     private final CountryService countryService;
+
+    private final CountryModelAssembler countryAssembler;
     
     @GetMapping
-    public List<CountryDto> getAllCountries() {
-        return countryService.getAllCountries();
+    public CollectionModel<EntityModel<CountryDto>> getAllCountries() {
+
+        List<CountryDto> products = countryService.getAllCountries();
+
+        return countryAssembler.toCollectionModel(products);
     }
 
     @GetMapping("/{id}")
-    public CountryDto getCountryById(@RequestParam Long id) {
-        return countryService.getCountryById(id);
+    public EntityModel<CountryDto> getCountryById(@RequestParam Long id) {
+
+        return countryAssembler.toModel(countryService.getCountryById(id));
     }
 
 }

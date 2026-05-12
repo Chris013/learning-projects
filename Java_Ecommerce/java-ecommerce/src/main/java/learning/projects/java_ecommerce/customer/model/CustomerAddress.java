@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import learning.projects.java_ecommerce.location.model.Housenumber;
 import learning.projects.java_ecommerce.location.model.Street;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,7 +52,7 @@ public class CustomerAddress {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = Housenumber.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_HOUSENUMBER))
-    private Housenumber housenumber;
+    private Housenumber houseNumber;
 
     @Enumerated(EnumType.STRING) // Saves "RECHNUNG" instead of 0 in the DB
     @Column(name = DbSchema.COL_ADR_TYPE)

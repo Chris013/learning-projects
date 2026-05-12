@@ -1,10 +1,10 @@
 package learning.projects.java_ecommerce.customer.dto;
 
 import learning.projects.java_ecommerce.customer.model.AddressType;
-import learning.projects.java_ecommerce.location.model.AddressId;
+import learning.projects.java_ecommerce.location.model.StreetId;
 
 public record CustomerAddressDto(
-    AddressId addressId,
+    StreetId addressId,
     String streetName,
     String houseNumber,
     String zipCode,

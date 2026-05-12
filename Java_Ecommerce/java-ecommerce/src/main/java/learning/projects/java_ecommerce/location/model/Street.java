@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = Address.DbSchema.TABLE)
+@Table(name = Street.DbSchema.TABLE)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -32,7 +32,6 @@ public class Street {
         public static final String TABLE = "street";
         public static final String COL_ID = "street_id";
         public static final String COL_STREET = "street_name";
-        public static final String COL_HOUSE_NUMBER = "house_number";
         public static final String FK_CITY = "fk_city";
     }
 
@@ -43,10 +42,7 @@ public class Street {
     @Column(name = DbSchema.COL_STREET, nullable = false)
     private String streetName;
 
-    @Column(name = DbSchema.COL_HOUSE_NUMBER, nullable = false)
-    private String houseNumber;
-
-     @OneToMany(mappedBy = "address") //refers to the attribute name in CustomerAddress
+     @OneToMany(mappedBy = "street") //refers to the attribute name in CustomerAddress
     private List<CustomerAddress> customerAdresses;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

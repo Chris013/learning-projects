@@ -1,9 +1,12 @@
 package learning.projects.java_ecommerce.location.mapper;
 
+import org.springframework.stereotype.Component;
+
 import learning.projects.java_ecommerce.location.dto.CityDto;
 import learning.projects.java_ecommerce.location.model.City;
 import learning.projects.java_ecommerce.location.model.Country;
 
+@Component
 public class CityMapper {
 
     public static CityDto toDto(City city) {

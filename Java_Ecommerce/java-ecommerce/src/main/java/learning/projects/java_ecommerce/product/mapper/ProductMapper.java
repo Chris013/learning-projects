@@ -1,8 +1,11 @@
 package learning.projects.java_ecommerce.product.mapper;
 
+import org.springframework.stereotype.Component;
+
 import learning.projects.java_ecommerce.product.dto.ProductDto;
 import learning.projects.java_ecommerce.product.model.Product;
 
+@Component
 public class ProductMapper {
 
     public static ProductDto toDto(Product product) {

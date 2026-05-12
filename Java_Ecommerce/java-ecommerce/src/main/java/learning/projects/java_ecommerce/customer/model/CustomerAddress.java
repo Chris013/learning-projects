@@ -34,6 +34,7 @@ public class CustomerAddress {
         public static final String COL_ADR_TYPE = "address_type";
         public static final String FK_CUSTOMER = "fk_customer";
         public static final String FK_STREET = "fk_street";
+        public static final String FK_HOUSENUMBER = "fk_housenumber";
     }
 
     @Id
@@ -47,6 +48,10 @@ public class CustomerAddress {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = Street.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_STREET))
     private Street street;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = Housenumber.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_HOUSENUMBER))
+    private Housenumber housenumber;
 
     @Enumerated(EnumType.STRING) // Saves "RECHNUNG" instead of 0 in the DB
     @Column(name = DbSchema.COL_ADR_TYPE)

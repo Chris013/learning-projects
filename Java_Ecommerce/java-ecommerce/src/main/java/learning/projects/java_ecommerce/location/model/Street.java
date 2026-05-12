@@ -33,7 +33,7 @@ public class Street {
         public static final String COL_ID = "street_id";
         public static final String COL_STREET = "street_name";
         public static final String COL_HOUSE_NUMBER = "house_number";
-        public static final String FK_CITY = "city_id";
+        public static final String FK_CITY = "fk_city";
     }
 
     @EmbeddedId

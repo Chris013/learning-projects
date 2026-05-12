@@ -24,8 +24,8 @@ public class Housenumber {
         public static final String TABLE = "house_number";
         public static final String COL_ID = "house_number_id";
         public static final String COL_HOUSE_NUMBER = "number";
+        public static final String FK_STREET = "fk_street";
     }
-
 
     @EmbeddedId
     @AttributeOverride(name = "value", column = @Column(name = DbSchema.COL_ID))
@@ -33,5 +33,9 @@ public class Housenumber {
 
     @Column(name = DbSchema.COL_HOUSE_NUMBER, nullable = false)
     private String houseNumber;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = DbSchema.FK_STREET, nullable = false, foreignKey = @ForeignKey(name = Street.DbSchema.COL_ID))
+    private Street street;
 
 }

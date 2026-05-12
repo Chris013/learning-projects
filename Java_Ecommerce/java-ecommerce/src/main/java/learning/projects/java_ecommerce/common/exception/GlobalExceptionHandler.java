@@ -1,6 +1,8 @@
 package learning.projects.java_ecommerce.common.exception;
 
+import org.apache.coyote.BadRequestException;
 import org.springframework.http.ProblemDetail;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -19,6 +21,11 @@ public class GlobalExceptionHandler {
             ex.getCode(),
             request.getRequestURI()
         );
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<?> handleBadRequest(BadRequestException ex) {
+        return ResponseEntity.badRequest().build();
     }
 
 /*     @ExceptionHandler(MethodArgumentNotValidException.class)

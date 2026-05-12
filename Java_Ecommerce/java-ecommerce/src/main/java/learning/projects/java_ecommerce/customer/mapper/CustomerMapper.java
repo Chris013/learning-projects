@@ -7,7 +7,7 @@ import learning.projects.java_ecommerce.customer.dto.CustomerDto;
 import learning.projects.java_ecommerce.customer.model.Customer;
 import learning.projects.java_ecommerce.customer.model.CustomerAddress;
 import learning.projects.java_ecommerce.location.model.City;
-import learning.projects.java_ecommerce.location.model.Housenumber;
+import learning.projects.java_ecommerce.location.model.HouseNumber;
 import learning.projects.java_ecommerce.location.model.Street;
 
 public class CustomerMapper {
@@ -37,7 +37,7 @@ public class CustomerMapper {
     private CustomerAddressDto toAddressDto(CustomerAddress customerAdr) {
         Street addr = customerAdr.getStreet();
         City city = addr.getCity();
-        Housenumber houseNum = customerAdr.getHouseNumber();
+        HouseNumber houseNum = customerAdr.getHouseNumber();
         return new CustomerAddressDto(
             addr.getId(),
             addr.getStreetName(),

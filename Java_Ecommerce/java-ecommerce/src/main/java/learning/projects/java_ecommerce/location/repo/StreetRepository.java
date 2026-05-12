@@ -14,7 +14,7 @@ import learning.projects.java_ecommerce.location.model.Street;
 import learning.projects.java_ecommerce.location.model.StreetId;
 
 @Repository
-public interface AddressRepository extends JpaRepository<Street, StreetId>{
+public interface StreetRepository extends JpaRepository<Street, StreetId>{
 
     // 'Address' refers to the Class, 'streetName' refers to the Field
     @Query("SELECT a FROM Address a WHERE a.streetName LIKE %:streetName%")

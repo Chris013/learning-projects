@@ -1,7 +1,5 @@
 package learning.projects.java_ecommerce.location.model;
 
-import java.util.List;
-
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -10,9 +8,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import learning.projects.java_ecommerce.customer.model.CustomerAddress;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,13 +16,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = Housenumber.DbSchema.TABLE)
+@Table(name = HouseNumber.DbSchema.TABLE)
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Housenumber {
+public class HouseNumber {
 
     public static final class DbSchema {
         public static final String TABLE = "house_number";
@@ -37,13 +33,10 @@ public class Housenumber {
 
     @EmbeddedId
     @AttributeOverride(name = "value", column = @Column(name = DbSchema.COL_ID))
-    private HousenumberId id;
+    private HouseNumberId id;
 
     @Column(name = DbSchema.COL_HOUSE_NUMBER, nullable = false)
     private String houseNumber;
-
-    @OneToMany(mappedBy = "houseNumber") //refers to the attribute name in CustomerAddress
-    private List<CustomerAddress> customerAdresses;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = DbSchema.FK_STREET, nullable = false, foreignKey = @ForeignKey(name = Street.DbSchema.COL_ID))

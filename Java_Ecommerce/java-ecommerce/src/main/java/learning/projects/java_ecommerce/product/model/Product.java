@@ -28,6 +28,7 @@ public class Product {
         public static final String COL_BARCODE = "barcode";
         public static final String COL_NAME = "name";
         public static final String COL_DESCRIPTION = "description";
+        public static final String COL_STOCK_QUANTITY = "stock_quantity";
         public static final String COL_PRICE = "price";
     }
 
@@ -43,6 +44,9 @@ public class Product {
 
     @Column(name = DbSchema.COL_DESCRIPTION, nullable = true)
     private String description;
+
+    @Column(name = DbSchema.COL_STOCK_QUANTITY, nullable = false)
+    private int stockQuantity;
 
     @Column(name = DbSchema.COL_PRICE, nullable = false)
     private BigDecimal price;

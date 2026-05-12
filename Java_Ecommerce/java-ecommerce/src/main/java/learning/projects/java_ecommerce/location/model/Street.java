@@ -1,7 +1,5 @@
 package learning.projects.java_ecommerce.location.model;
 
-import java.util.List;
-
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -10,9 +8,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import learning.projects.java_ecommerce.customer.model.CustomerAddress;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,9 +37,6 @@ public class Street {
 
     @Column(name = DbSchema.COL_STREET, nullable = false)
     private String streetName;
-
-     @OneToMany(mappedBy = "street") //refers to the attribute name in CustomerAddress
-    private List<CustomerAddress> customerAdresses;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = DbSchema.FK_CITY, nullable = false, foreignKey = @ForeignKey(name = City.DbSchema.COL_ID))

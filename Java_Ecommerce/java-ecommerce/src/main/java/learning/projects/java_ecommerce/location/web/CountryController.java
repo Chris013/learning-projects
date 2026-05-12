@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import learning.projects.java_ecommerce.location.assembler.CountryModelAssembler;
 import learning.projects.java_ecommerce.location.dto.CountryDto;
 import learning.projects.java_ecommerce.location.service.CountryService;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 @RequestMapping("/api/v1/countries")
 @RequiredArgsConstructor
+@Tag(name = "Country Service", description = "APIs for reading countriy data")
 public class CountryController {
 
     private final CountryService countryService;

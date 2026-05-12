@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import learning.projects.java_ecommerce.product.assembler.ProductModelAssembler;
 import learning.projects.java_ecommerce.product.dto.ProductDto;
 import learning.projects.java_ecommerce.product.service.ProductService;
@@ -23,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
+@Tag(name = "Product Management", description = "APIs for managing products")
 public class ProductController {
 
     private final ProductService productService;

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = City.Mapping.TABLE)
+@Table(name = City.DbSchema.TABLE)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +20,7 @@ import lombok.Setter;
 @Builder
 public class City {
 
-    public static final class Mapping {
+    public static final class DbSchema {
         public static final String TABLE = "city";
         public static final String COL_ID = "city_id";
         public static final String COL_NAME = "city_name";
@@ -29,15 +29,15 @@ public class City {
     }
 
     @EmbeddedId
-    @AttributeOverride(name = "value", column = @Column(name = Mapping.COL_ID))
+    @AttributeOverride(name = "value", column = @Column(name = DbSchema.COL_ID))
     private CityId id;
 
-    @Column(name = Mapping.COL_NAME, nullable = false)
+    @Column(name = DbSchema.COL_NAME, nullable = false)
     private String name;
 
-    @Column(name = Mapping.COL_POSTAL, nullable = false)
+    @Column(name = DbSchema.COL_POSTAL, nullable = false)
     private String zipCode;
 
-    @Column(name = Mapping.COL_COUNTRY, nullable = false, length = 3)
+    @Column(name = DbSchema.COL_COUNTRY, nullable = false, length = 3)
     private String countryCode;
 }

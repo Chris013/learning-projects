@@ -1,3 +1,4 @@
 {
-  "workbench.colorTheme": "FireFly Pro"
+  "workbench.colorTheme": "FireFly Pro",
+  "java.configuration.updateBuildConfiguration": "interactive"
 }

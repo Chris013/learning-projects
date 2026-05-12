@@ -2,12 +2,15 @@ package learning.projects.java_ecommerce.customer.mapper;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import learning.projects.java_ecommerce.customer.dto.CustomerAddressDto;
 import learning.projects.java_ecommerce.customer.dto.CustomerDto;
 import learning.projects.java_ecommerce.customer.model.Customer;
 import learning.projects.java_ecommerce.customer.model.CustomerAddress;
 import learning.projects.java_ecommerce.location.model.Address;
 
+@Component
 public class CustomerMapper {
 
     /**

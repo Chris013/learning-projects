@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = Customer.Mapping.TABLE)
+@Table(name = Customer.DbSchema.TABLE)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,7 +23,7 @@ import lombok.Setter;
 @Builder
 public class Customer {
 
-    public static final class Mapping {
+    public static final class DbSchema {
         public static final String TABLE = "customer";
         public static final String COL_ID = "customer_id";
         public static final String COL_FIRSTNAME = "firstname";
@@ -33,19 +33,19 @@ public class Customer {
     }
 
     @EmbeddedId
-    @AttributeOverride(name = "value", column = @Column(name = Mapping.COL_ID))
+    @AttributeOverride(name = "value", column = @Column(name = DbSchema.COL_ID))
     private CustomerId customerId;
 
-    @Column(name = Mapping.COL_USERNAME, unique = true, nullable = false)
+    @Column(name = DbSchema.COL_USERNAME, unique = true, nullable = false)
     private String userName;
 
-    @Column(name = Mapping.COL_FIRSTNAME, nullable = false)
+    @Column(name = DbSchema.COL_FIRSTNAME, nullable = false)
     private String firstName;
 
-    @Column(name = Mapping.COL_LASTNAME, nullable = false)
+    @Column(name = DbSchema.COL_LASTNAME, nullable = false)
     private String lastName;
 
-    @Column(name = Mapping.COL_EMAIL, unique = true, nullable = false)
+    @Column(name = DbSchema.COL_EMAIL, unique = true, nullable = false)
     private String email;
 
     @OneToMany(mappedBy = "customer") //refers to the attribute name in CustomerAddress

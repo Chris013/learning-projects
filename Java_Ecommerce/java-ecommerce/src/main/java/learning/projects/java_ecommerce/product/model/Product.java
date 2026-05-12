@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = Product.Mapping.TABLE)
+@Table(name = Product.DbSchema.TABLE)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,29 +22,33 @@ import lombok.Setter;
 @Builder
 public class Product {
 
-    public static final class Mapping{
+    public static final class DbSchema{
         public static final String TABLE = "product";
         public static final String COL_ID = "product_id";
         public static final String COL_BARCODE = "barcode";
         public static final String COL_NAME = "name";
         public static final String COL_DESCRIPTION = "description";
+        public static final String COL_STOCK_QUANTITY = "stock_quantity";
         public static final String COL_PRICE = "price";
     }
 
     @EmbeddedId
-    @AttributeOverride(name = "value", column = @Column(name = Mapping.COL_ID))
+    @AttributeOverride(name = "value", column = @Column(name = DbSchema.COL_ID))
     private ProductId productId;
 
-    @Column(name = Mapping.COL_BARCODE, nullable = false)
+    @Column(name = DbSchema.COL_BARCODE, nullable = false)
     private String barcode;
 
-    @Column(name = Mapping.COL_NAME, nullable = false)
+    @Column(name = DbSchema.COL_NAME, nullable = false)
     private String name;
 
-    @Column(name = Mapping.COL_DESCRIPTION, nullable = true)
+    @Column(name = DbSchema.COL_DESCRIPTION, nullable = true)
     private String description;
 
-    @Column(name = Mapping.COL_PRICE, nullable = false)
+    @Column(name = DbSchema.COL_STOCK_QUANTITY, nullable = false)
+    private int stockQuantity;
+
+    @Column(name = DbSchema.COL_PRICE, nullable = false)
     private BigDecimal price;
 
 }

@@ -16,33 +16,29 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = City.DbSchema.TABLE)
+@Table(name = Street.DbSchema.TABLE)
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class City {
+public class Street {
 
     public static final class DbSchema {
-        public static final String TABLE = "city";
-        public static final String COL_ID = "city_id";
-        public static final String COL_NAME = "city_name";
-        public static final String COL_POSTAL = "zip_code";
-        public static final String FK_COUNTRY = "country";
+        public static final String TABLE = "street";
+        public static final String COL_ID = "street_id";
+        public static final String COL_STREET = "street_name";
+        public static final String FK_CITY = "fk_city";
     }
 
     @EmbeddedId
     @AttributeOverride(name = "value", column = @Column(name = DbSchema.COL_ID))
-    private CityId id;
+    private StreetId id;
 
-    @Column(name = DbSchema.COL_NAME, nullable = false)
-    private String name;
-
-    @Column(name = DbSchema.COL_POSTAL, nullable = false)
-    private String zipCode;
+    @Column(name = DbSchema.COL_STREET, nullable = false)
+    private String streetName;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = DbSchema.FK_COUNTRY, nullable = false, foreignKey = @ForeignKey(name = Country.DbSchema.COL_ID))
-    private Country country;
+    @JoinColumn(name = DbSchema.FK_CITY, nullable = false, foreignKey = @ForeignKey(name = City.DbSchema.COL_ID))
+    private City city;
 }

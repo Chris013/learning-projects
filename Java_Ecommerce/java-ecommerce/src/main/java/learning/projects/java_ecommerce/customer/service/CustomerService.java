@@ -48,4 +48,9 @@ public class CustomerService {
             .map(customerMapper::toDto)
             .orElseThrow(() -> new EntityNotFoundException());
     }
+
+    public CustomerDto getCustomerById(UUID id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCustomerById'");
+    }
 }

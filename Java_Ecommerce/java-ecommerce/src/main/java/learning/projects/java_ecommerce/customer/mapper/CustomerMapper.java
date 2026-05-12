@@ -8,7 +8,9 @@ import learning.projects.java_ecommerce.customer.dto.CustomerAddressDto;
 import learning.projects.java_ecommerce.customer.dto.CustomerDto;
 import learning.projects.java_ecommerce.customer.model.Customer;
 import learning.projects.java_ecommerce.customer.model.CustomerAddress;
-import learning.projects.java_ecommerce.location.model.Address;
+import learning.projects.java_ecommerce.location.model.City;
+import learning.projects.java_ecommerce.location.model.HouseNumber;
+import learning.projects.java_ecommerce.location.model.Street;
 
 @Component
 public class CustomerMapper {
@@ -36,13 +38,15 @@ public class CustomerMapper {
      * Private Hilfsmethode für die Adress-Konvertierung
      */
     private CustomerAddressDto toAddressDto(CustomerAddress customerAdr) {
-        Address addr = customerAdr.getAddress();
+        Street addr = customerAdr.getStreet();
+        City city = addr.getCity();
+        HouseNumber houseNum = customerAdr.getHouseNumber();
         return new CustomerAddressDto(
             addr.getId(),
             addr.getStreetName(),
-            addr.getHouseNumber(),
-            addr.getCity().getZipCode(),
-            addr.getCity().getName(),
+            houseNum.getHouseNumber(),
+            city.getZipCode(),
+            city.getName(),
             customerAdr.getAddressType() // Das Feld aus der Verknüpfungstabelle
         );
     }

@@ -37,7 +37,7 @@ public class ProductController {
      * <p>Returns a HATEOAS collection containing all products, where each product
      * includes navigational links such as:
      * <ul>
-     *     <li>self link (GET /api/v1/products/{id})</li>
+     *     <li>self link (GET /api/v1/products)</li>
      *     <li>delete link (DELETE /api/v1/products/{id})</li>
      * </ul>
      *
@@ -58,9 +58,9 @@ public class ProductController {
      *
      * <p>The response includes HATEOAS links such as:
      * <ul>
-     *     <li>self link</li>
-     *     <li>link to product collection</li>
-     *     <li>delete action link</li>
+     *     <li>self link (GET /api/v1/products/{id})</li>
+     *     <li>link to product collection (GET /api/v1/products)</li>
+     *     <li>delete action link (DELETE /api/v1/products/{id})</li>
      * </ul>
      *
      * @param id the UUID of the product

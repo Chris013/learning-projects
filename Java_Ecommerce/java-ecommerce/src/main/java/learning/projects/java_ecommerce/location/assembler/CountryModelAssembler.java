@@ -8,10 +8,12 @@ import java.util.stream.StreamSupport;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.stereotype.Component;
 
 import learning.projects.java_ecommerce.location.dto.CountryDto;
 import learning.projects.java_ecommerce.location.web.CountryController;
 
+@Component
 public class CountryModelAssembler implements RepresentationModelAssembler<CountryDto, EntityModel<CountryDto>>{
 
     @Override

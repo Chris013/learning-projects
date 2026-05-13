@@ -33,7 +33,7 @@ public class CountryController {
      * <p>Returns a HATEOAS collection containing all countries, where each country
      * includes navigational links such as:
      * <ul>
-     *     <li>self link (GET /api/v1/countries/{id})</li>
+     *     <li>self link (GET /api/v1/countries)</li>
      * </ul>
      *
      * @return a collection of country resources wrapped in HATEOAS metadata
@@ -51,11 +51,11 @@ public class CountryController {
      *
      * <p>The response includes HATEOAS links such as:
      * <ul>
-     *     <li>self link</li>
-     *     <li>link to country collection</li>
+     *     <li>self link (GET /api/v1/countries/{id})</li>
+     *     <li>link to country collection (GET /api/v1/countries) </li>
      * </ul>
      *
-     * @param id the unique id of the product
+     * @param id the unique id of the country
      * @return the country wrapped in an EntityModel with hypermedia links
      */
     @GetMapping("/{id}")

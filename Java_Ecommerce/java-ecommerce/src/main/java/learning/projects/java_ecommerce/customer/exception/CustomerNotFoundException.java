@@ -8,7 +8,7 @@ import learning.projects.java_ecommerce.common.exception.DomainException;
 
 public class CustomerNotFoundException extends DomainException{
 
-    protected CustomerNotFoundException(UUID id) {
+    public CustomerNotFoundException(UUID id) {
         super(
             "CUSTOMER_NOT_FOUND", 
             "Customer not found: " + id, 

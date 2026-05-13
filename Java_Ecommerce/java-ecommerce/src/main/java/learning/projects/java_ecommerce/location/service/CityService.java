@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import learning.projects.java_ecommerce.location.dto.CityDto;
-import learning.projects.java_ecommerce.location.dto.CitySearchCriteriaByCountry;
+import learning.projects.java_ecommerce.location.dto.CitySearchCriteria;
 import learning.projects.java_ecommerce.location.exception.CityNotFoundException;
 import learning.projects.java_ecommerce.location.mapper.CityMapper;
 import learning.projects.java_ecommerce.location.model.City;
@@ -37,7 +37,8 @@ public class CityService {
         .orElseThrow(() -> new CityNotFoundException(id));
     }
 
-    public List<CityDto> searchCitiesByCriteria(CitySearchCriteriaByCountry searchCriteria) {
+    public List<CityDto> searchCitiesByCriteria(CitySearchCriteria searchCriteria) {
+        
         Specification<City> spec = Specification
             .where(CitySpecification.hasCountryId(searchCriteria.countryId()))
             .and(CitySpecification.hasCountryIsoCode(searchCriteria.countryIsoCode()))

@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import learning.projects.java_ecommerce.location.assembler.CityModelAssembler;
 import learning.projects.java_ecommerce.location.dto.CityDto;
-import learning.projects.java_ecommerce.location.dto.CitySearchCriteriaByCountry;
+import learning.projects.java_ecommerce.location.dto.CitySearchCriteria;
 import learning.projects.java_ecommerce.location.service.CityService;
 import lombok.RequiredArgsConstructor;
 
@@ -86,12 +86,12 @@ public class CityController {
      * @return a HATEOAS {@link CollectionModel} of {@link CityDto} wrapped in {@link EntityModel},
      *         each enriched with hypermedia links such as self and collection navigation links
      *
-     * @see CitySearchCriteriaByCountry
-     * @see CityService#searchCitiesByCriteria(CitySearchCriteriaByCountry)
+     * @see CitySearchCriteria
+     * @see CityService#searchCitiesByCriteria(CitySearchCriteria)
      * @see CityModelAssembler
      */
     @GetMapping("/search")
-    public CollectionModel<EntityModel<CityDto>> getCityByCountryCode(@RequestBody CitySearchCriteriaByCountry searchCriteria) {
+    public CollectionModel<EntityModel<CityDto>> getCityByCriteria(@RequestBody CitySearchCriteria searchCriteria) {
         List<CityDto> results = cityService.searchCitiesByCriteria(searchCriteria);
 
         return cityAssembler.toCollectionModel(results);

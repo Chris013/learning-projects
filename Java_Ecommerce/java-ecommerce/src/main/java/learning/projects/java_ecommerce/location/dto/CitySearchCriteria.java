@@ -1,6 +1,6 @@
 package learning.projects.java_ecommerce.location.dto;
 
-public record CitySearchCriteriaByCountry(
+public record CitySearchCriteria(
     Long countryId,
     String countryIsoCode,
     String countryName,

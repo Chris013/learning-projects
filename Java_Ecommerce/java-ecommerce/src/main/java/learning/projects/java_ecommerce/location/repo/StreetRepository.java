@@ -3,6 +3,7 @@ package learning.projects.java_ecommerce.location.repo;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import learning.projects.java_ecommerce.customer.dto.StreetLookupView;
@@ -11,7 +12,7 @@ import learning.projects.java_ecommerce.location.model.Street;
 import learning.projects.java_ecommerce.location.model.StreetId;
 
 @Repository
-public interface StreetRepository extends JpaRepository<Street, StreetId>{
+public interface StreetRepository extends JpaRepository<Street, StreetId>, JpaSpecificationExecutor<Street>{
 
     // 'Address' refers to the Class, 'streetName' refers to the Field
     /*@Query("SELECT a FROM Street a WHERE a.streetName LIKE %:streetName%")

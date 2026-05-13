@@ -27,6 +27,17 @@ public class CountryController {
 
     private final CountryModelAssembler countryAssembler;
     
+    /**
+     * Retrieves all existing countries.
+     *
+     * <p>Returns a HATEOAS collection containing all countries, where each country
+     * includes navigational links such as:
+     * <ul>
+     *     <li>self link (GET /api/v1/countries/{id})</li>
+     * </ul>
+     *
+     * @return a collection of country resources wrapped in HATEOAS metadata
+     */
     @GetMapping
     public CollectionModel<EntityModel<CountryDto>> getAllCountries() {
 
@@ -35,6 +46,18 @@ public class CountryController {
         return countryAssembler.toCollectionModel(products);
     }
 
+    /**
+     * Retrieves a single country by its unique identifier.
+     *
+     * <p>The response includes HATEOAS links such as:
+     * <ul>
+     *     <li>self link</li>
+     *     <li>link to country collection</li>
+     * </ul>
+     *
+     * @param id the unique id of the product
+     * @return the country wrapped in an EntityModel with hypermedia links
+     */
     @GetMapping("/{id}")
     public EntityModel<CountryDto> getCountryById(@RequestParam Long id) {
 

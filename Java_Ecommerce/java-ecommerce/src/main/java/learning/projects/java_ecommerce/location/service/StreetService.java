@@ -4,14 +4,12 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
 
 import learning.projects.java_ecommerce.location.dto.StreetDto;
 import learning.projects.java_ecommerce.location.dto.StreetSearchCriteria;
 import learning.projects.java_ecommerce.location.exception.StreetNotFoundException;
 import learning.projects.java_ecommerce.location.mapper.StreetMapper;
-import learning.projects.java_ecommerce.location.model.City;
 import learning.projects.java_ecommerce.location.model.Street;
 import learning.projects.java_ecommerce.location.model.StreetId;
 import learning.projects.java_ecommerce.location.repo.StreetRepository;

@@ -5,9 +5,13 @@ import java.util.UUID;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import learning.projects.java_ecommerce.common.exception.BadRequestException;
+import learning.projects.java_ecommerce.location.mapper.CityMapper;
+import learning.projects.java_ecommerce.location.model.City;
+import learning.projects.java_ecommerce.location.repo.CitySpecification;
 import learning.projects.java_ecommerce.product.dto.ProductDto;
 import learning.projects.java_ecommerce.product.dto.ProductSearchCriteria;
 import learning.projects.java_ecommerce.product.exception.ProductDataValidationException;
@@ -16,6 +20,7 @@ import learning.projects.java_ecommerce.product.mapper.ProductMapper;
 import learning.projects.java_ecommerce.product.model.Product;
 import learning.projects.java_ecommerce.product.model.ProductId;
 import learning.projects.java_ecommerce.product.repo.ProductRepository;
+import learning.projects.java_ecommerce.product.repo.ProductSpecification;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -75,8 +80,25 @@ public class ProductService {
     }
 
     public List<ProductDto> searchProductsByCriteria(ProductSearchCriteria searchCriteria) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'searchProductsByCriteria'");
+
+            Specification<Product> spec = Specification
+            .where(ProductSpecification.hasProductId(searchCriteria.productId()))
+            .and(ProductSpecification.hasBarCode(searchCriteria.barcode()))
+            .and(ProductSpecification.hasProductName(searchCriteria.productName()))
+            .and(ProductSpecification.nameStartsWith(searchCriteria.nameStartsWith()))
+            .and(ProductSpecification.nameContains(searchCriteria.nameContains()))
+            .and(ProductSpecification.descriptionStartsWith(searchCriteria.descriptionStartsWith()))
+            .and(ProductSpecification.descriptionContains(searchCriteria.descriptionContains()))
+            .and(ProductSpecification.hasStockQuantity(searchCriteria.stockQuantity()))
+            .and(ProductSpecification.stockQuantityAbove(searchCriteria.stockQuantityMin()))
+            .and(ProductSpecification.stockQuantityBelow(searchCriteria.stockQuantityMax()))
+            .and(ProductSpecification.price(searchCriteria.price()))
+            .and(ProductSpecification.priceAbove(searchCriteria.priceMin()))
+            .and(ProductSpecification.priceBelow(searchCriteria.priceMax()));
+
+        return productRepo.findAll(spec).stream()
+        .map(ProductMapper::toDto)
+        .toList();
     }
 
 }

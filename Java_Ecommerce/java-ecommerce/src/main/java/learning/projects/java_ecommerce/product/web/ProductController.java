@@ -157,10 +157,19 @@ public class ProductController {
      *
      * @param searchCriteria the search criteria used to filter products, including:
      *                       <ul>
-     *                         <li>countryId - the internal database ID of the country</li>
-     *                         <li>countryIsoCode - ISO code of the country (e.g. "DE")</li>
-     *                         <li>countryName - full name of the country</li>
-     *                         <li>cityNameStartsWith - prefix filter for city names</li>
+     *                         <li>productId - the internal database ID of the product</li>
+     *                         <li>barcode - the unique barcode of a product</li>
+     *                         <li>productName - full name of the product</li>
+     *                         <li>nameStartsWith - the name the product starts with</li>
+     *                         <li>nameContains - the text the product name contains</li>
+     *                         <li>descriptionStartsWith - the description the product starts with</li>
+     *                         <li>descriptionContains - the text the description contains</li>
+     *                         <li>stockQuantity - exact quantity</li>
+     *                         <li>stockQuantityMin - minimal stock quantity</li>
+     *                         <li>stockQuantityMax - maximum stock quantity</li>
+     *                         <li>price - exact price</li>
+     *                         <li>priceMin - minimal price</li>
+     *                         <li>priceMax - maximum price</li>
      *                       </ul>
      *
      * @return a HATEOAS {@link CollectionModel} of {@link ProductDto} wrapped in {@link EntityModel},

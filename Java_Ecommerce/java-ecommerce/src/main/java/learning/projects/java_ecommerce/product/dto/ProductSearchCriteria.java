@@ -1,9 +1,12 @@
 package learning.projects.java_ecommerce.product.dto;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public record ProductSearchCriteria(    
-    String barcodeStartsWith,
+    UUID productId,
+    String barcode,
+    String productName,
     String nameStartsWith,
     String nameContains,
     String descriptionStartsWith,

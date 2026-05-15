@@ -5,17 +5,17 @@ import learning.projects.java_ecommerce.location.model.CityId;
 import learning.projects.java_ecommerce.location.model.HouseNumberId;
 import learning.projects.java_ecommerce.location.model.StreetId;
 
-public record CustomerAddressDto(
+public record CustomerAddressResponseDto(
     Long customerAddressId,
-    StreetId addressId,
+    Long countryId,
+    String countryName,
+    String countryCode,
+    CityId cityId,
+    String cityName,
+    String zipCode,
+    StreetId streetId,
     String streetName,
     HouseNumberId houseNumberId,
     String houseNumber,
-    CityId cityId,
-    String zipCode,
-    String cityName,
-    Long countryId,
-    String countryIso,
-    String countryName,
-    AddressType addressType // z.B. "RECHNUNG" oder "LIEFERUNG" aus der Brückentabelle
-) { } //TODO need to Adjust these and the mapper
+    AddressType addressType
+) {}

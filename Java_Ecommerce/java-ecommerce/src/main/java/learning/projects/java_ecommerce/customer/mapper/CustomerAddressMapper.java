@@ -1,39 +1,58 @@
 package learning.projects.java_ecommerce.customer.mapper;
 
-import learning.projects.java_ecommerce.customer.dto.CustomerAddressDto;
+import learning.projects.java_ecommerce.customer.dto.CustomerAddressResponseDto;
+import learning.projects.java_ecommerce.customer.model.AddressType;
+import learning.projects.java_ecommerce.customer.model.Customer;
 import learning.projects.java_ecommerce.customer.model.CustomerAddress;
 import learning.projects.java_ecommerce.location.model.City;
+import learning.projects.java_ecommerce.location.model.Country;
 import learning.projects.java_ecommerce.location.model.HouseNumber;
 import learning.projects.java_ecommerce.location.model.Street;
 
 public class CustomerAddressMapper {
 
-    /**
-     * Private Hilfsmethode für die Adress-Konvertierung
-     */
-    public static CustomerAddressDto toDto(CustomerAddress customerAdr) {
-        Street addr = customerAdr.getStreet();
-        City city = addr.getCity();
-        HouseNumber houseNum = customerAdr.getHouseNumber();
-        return new CustomerAddressDto(
-            customerAdr.getId(),
-            addr.getId(),
-            addr.getStreetName(),
-            houseNum.getHouseNumber(),
-            city.getZipCode(),
-            city.getName(),
-            customerAdr.getAddressType() // Das Feld aus der Verknüpfungstabelle
-        );
+    private CustomerAddressMapper() {}
+
+    public static CustomerAddress toEntity(
+            Customer customer,
+            Country country,
+            City city,
+            Street street,
+            HouseNumber houseNumber,
+            AddressType addressType
+    ) {
+
+        return CustomerAddress.builder()
+                .customer(customer)
+                .country(country)
+                .city(city)
+                .street(street)
+                .houseNumber(houseNumber)
+                .addressType(addressType)
+                .build();
     }
 
-    public static CustomerAddress toEntity(CustomerAddressDto customerAddressDto){
-        
-        CustomerAddress customerAddress = new CustomerAddress();
+    public static CustomerAddressResponseDto toDto(CustomerAddress entity) {
 
-        customerAddress.setId(customerAddressDto.customerAddressId());
-        //TODO alles andere noch korrigieren und fertig machen
+        Country country = entity.getCountry();
+        City city = entity.getCity();
+        Street street = entity.getStreet();
+        HouseNumber houseNumber = entity.getHouseNumber();
 
-        return customerAddress;
+        return new CustomerAddressResponseDto(
+                entity.getId(),
+                country.getId(),
+                country.getCountryName(),
+                country.getCountryCode(),
+                city.getId(),
+                city.getName(),
+                city.getZipCode(),
+                street.getId(),
+                street.getStreetName(),
+                houseNumber.getId(),
+                houseNumber.getHouseNumber(),
+                entity.getAddressType()
+        );
     }
 
 }

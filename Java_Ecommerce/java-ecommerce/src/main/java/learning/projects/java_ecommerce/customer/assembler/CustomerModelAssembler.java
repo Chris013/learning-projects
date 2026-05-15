@@ -7,14 +7,14 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
-import learning.projects.java_ecommerce.customer.dto.CustomerDto;
+import learning.projects.java_ecommerce.customer.dto.CustomerResponseDto;
 import learning.projects.java_ecommerce.customer.web.CustomerController;
 
 @Component
-public class CustomerModelAssembler implements RepresentationModelAssembler<CustomerDto, EntityModel<CustomerDto>>{
+public class CustomerModelAssembler implements RepresentationModelAssembler<CustomerResponseDto, EntityModel<CustomerResponseDto>>{
 
     @Override
-    public EntityModel<CustomerDto> toModel(CustomerDto entity) {
+    public EntityModel<CustomerResponseDto> toModel(CustomerResponseDto entity) {
         return EntityModel.of(
             entity,
             linkTo(methodOn(CustomerController.class).getCustomerById(entity.id().value())).withSelfRel()

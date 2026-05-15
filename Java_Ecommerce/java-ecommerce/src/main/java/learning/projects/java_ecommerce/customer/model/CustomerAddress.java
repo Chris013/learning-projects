@@ -46,27 +46,27 @@ public class CustomerAddress {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = Customer.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_CUSTOMER))
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = DbSchema.FK_CUSTOMER, referencedColumnName = Customer.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_CUSTOMER), nullable = false)
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = Country.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_COUNTRY))
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = DbSchema.FK_COUNTRY, referencedColumnName = Country.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_COUNTRY), nullable = false)
     private Country country;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = City.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_CITY))
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = DbSchema.FK_CITY, referencedColumnName = City.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_CITY), nullable = false)
     private City city;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = Street.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_STREET))
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = DbSchema.FK_STREET, referencedColumnName = Street.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_STREET), nullable = false)
     private Street street;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = HouseNumber.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_HOUSENUMBER))
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = DbSchema.FK_HOUSENUMBER, referencedColumnName = HouseNumber.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_HOUSENUMBER), nullable = false)
     private HouseNumber houseNumber;
 
     @Enumerated(EnumType.STRING) // Saves "RECHNUNG" instead of 0 in the DB
-    @Column(name = DbSchema.COL_ADR_TYPE)
+    @Column(name = DbSchema.COL_ADR_TYPE, nullable = false)
     private AddressType addressType;
 }

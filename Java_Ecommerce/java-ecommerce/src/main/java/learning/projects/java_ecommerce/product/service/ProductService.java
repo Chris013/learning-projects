@@ -9,9 +9,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import learning.projects.java_ecommerce.common.exception.BadRequestException;
-import learning.projects.java_ecommerce.location.mapper.CityMapper;
-import learning.projects.java_ecommerce.location.model.City;
-import learning.projects.java_ecommerce.location.repo.CitySpecification;
 import learning.projects.java_ecommerce.product.dto.ProductDto;
 import learning.projects.java_ecommerce.product.dto.ProductSearchCriteria;
 import learning.projects.java_ecommerce.product.exception.ProductDataValidationException;

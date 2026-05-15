@@ -16,10 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-import learning.projects.java_ecommerce.location.assembler.CityModelAssembler;
-import learning.projects.java_ecommerce.location.dto.CityDto;
-import learning.projects.java_ecommerce.location.dto.CitySearchCriteria;
-import learning.projects.java_ecommerce.location.service.CityService;
 import learning.projects.java_ecommerce.product.assembler.ProductModelAssembler;
 import learning.projects.java_ecommerce.product.dto.ProductDto;
 import learning.projects.java_ecommerce.product.dto.ProductSearchCriteria;

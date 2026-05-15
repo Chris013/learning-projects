@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,8 +30,11 @@ import lombok.RequiredArgsConstructor;
 public class ProductController {
 
     private final ProductService productService;
-
     private final ProductModelAssembler productAssembler;
+
+    /*private final IdempotencyService idempotencyService;
+    private final RequestHashService hashService;
+    private final ObjectMapper objectMapper;*/
 
     /**
      * Retrieves all available products.
@@ -87,9 +91,45 @@ public class ProductController {
      * @return created product wrapped in EntityModel
      */
     @PostMapping
-    public ResponseEntity<EntityModel<ProductDto>> createProduct(@RequestBody ProductDto dto) {
+    public ResponseEntity<EntityModel<ProductDto>> createProduct(@RequestHeader("Idempotency-Key") String key, @RequestBody ProductDto dto) {
+
+        //TODO: use Redis instead of normal DB for this
+        //TODO: instead of implementing this in every endpoint, implement the IdempotencyInterceptor
+
+        /*String endpoint = "POST:/products";
+
+        // 1. Check existing request
+        var existing = idempotencyService.get(key, endpoint);
+
+        if (existing.isPresent()) {
+            IdempotencyRecord record = existing.get();
+
+            return ResponseEntity
+                    .status(record.getStatusCode())
+                    .body(objectMapper.readValue(
+                            record.getResponseBody(),
+                            ProductResponse.class
+                    ));
+        }
+        
+        2. If same key but different payload:
+        if (!existing.requestHash.equals(currentHash)) {
+            throw new IllegalStateException("Idempotency-Key reused with different payload");
+        }
+        */
 
         ProductDto product = productService.createProduct(dto);
+
+        // 3. Store result
+        /*IdempotencyRecord record = new IdempotencyRecord();
+        record.setIdempotencyKey(key);
+        record.setEndpoint(endpoint);
+        record.setRequestHash(hashService.hash(request));
+        record.setResponseBody(objectMapper.writeValueAsString(response));
+        record.setStatusCode(201);
+        record.setCreatedAt(Instant.now());
+
+        idempotencyService.save(record);*/
 
         EntityModel<ProductDto> entityModel = productAssembler.toModel(product);
 

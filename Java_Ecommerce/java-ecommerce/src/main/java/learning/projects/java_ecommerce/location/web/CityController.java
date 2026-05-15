@@ -65,7 +65,7 @@ public class CityController {
         return cityAssembler.toModel(cityService.getCityById(id));
     }
 
-        /**
+    /**
      * Searches cities based on flexible country and city filter criteria.
      *
      * <p>This endpoint allows querying cities using multiple optional filters such as:

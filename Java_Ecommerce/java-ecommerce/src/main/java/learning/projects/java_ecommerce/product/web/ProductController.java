@@ -16,8 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import learning.projects.java_ecommerce.location.assembler.CityModelAssembler;
+import learning.projects.java_ecommerce.location.dto.CityDto;
+import learning.projects.java_ecommerce.location.dto.CitySearchCriteria;
+import learning.projects.java_ecommerce.location.service.CityService;
 import learning.projects.java_ecommerce.product.assembler.ProductModelAssembler;
 import learning.projects.java_ecommerce.product.dto.ProductDto;
+import learning.projects.java_ecommerce.product.dto.ProductSearchCriteria;
 import learning.projects.java_ecommerce.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 
@@ -138,5 +143,37 @@ public class ProductController {
     public ResponseEntity<Void> deleteProduct(@PathVariable UUID id){
         productService.deleteProductById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Searches products based on flexible filter criteria.
+     *
+     * <p>This endpoint allows querying products using multiple optional filters such as:
+     * text search, prices and quantities.
+     * Any combination of these filters can be provided; null values are ignored by the search logic.</p>
+     *
+     * <p>The result is returned as a HATEOAS-compliant {@link CollectionModel} containing
+     * {@link EntityModel} instances of {@link ProductDto}, including self and navigation links.</p>
+     *
+     * @param searchCriteria the search criteria used to filter products, including:
+     *                       <ul>
+     *                         <li>countryId - the internal database ID of the country</li>
+     *                         <li>countryIsoCode - ISO code of the country (e.g. "DE")</li>
+     *                         <li>countryName - full name of the country</li>
+     *                         <li>cityNameStartsWith - prefix filter for city names</li>
+     *                       </ul>
+     *
+     * @return a HATEOAS {@link CollectionModel} of {@link ProductDto} wrapped in {@link EntityModel},
+     *         each enriched with hypermedia links such as self and collection navigation links
+     *
+     * @see ProductSearchCriteria
+     * @see ProductService#searchProductsByCriteria(ProductSearchCriteria)
+     * @see ProductModelAssembler
+     */
+    @GetMapping("/search")
+    public CollectionModel<EntityModel<ProductDto>> getCityByCriteria(@RequestBody ProductSearchCriteria searchCriteria) {
+        List<ProductDto> results = productService.searchProductsByCriteria(searchCriteria);
+
+        return productAssembler.toCollectionModel(results);
     }
 }

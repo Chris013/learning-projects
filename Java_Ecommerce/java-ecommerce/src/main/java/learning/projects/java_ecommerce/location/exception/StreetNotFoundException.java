@@ -14,7 +14,5 @@ public class StreetNotFoundException extends DomainException{
             "Street not found: " + id, 
             HttpStatus.NOT_FOUND
         );
-        //TODO Auto-generated constructor stub
     }
-
 }

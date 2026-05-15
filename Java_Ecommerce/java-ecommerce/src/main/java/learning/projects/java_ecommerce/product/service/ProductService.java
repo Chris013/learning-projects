@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import learning.projects.java_ecommerce.common.exception.BadRequestException;
 import learning.projects.java_ecommerce.product.dto.ProductDto;
+import learning.projects.java_ecommerce.product.dto.ProductSearchCriteria;
 import learning.projects.java_ecommerce.product.exception.ProductDataValidationException;
 import learning.projects.java_ecommerce.product.exception.ProductNotFoundException;
 import learning.projects.java_ecommerce.product.mapper.ProductMapper;
@@ -71,6 +72,11 @@ public class ProductService {
             // Handles database constraint issues (e.g., product is used in an order)
             throw new BadRequestException("Cannot delete product because of data integrity");
         }
+    }
+
+    public List<ProductDto> searchProductsByCriteria(ProductSearchCriteria searchCriteria) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'searchProductsByCriteria'");
     }
 
 }

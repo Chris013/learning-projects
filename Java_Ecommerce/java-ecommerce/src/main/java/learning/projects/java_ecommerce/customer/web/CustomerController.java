@@ -28,6 +28,18 @@ public class CustomerController {
 
     private final CustomerModelAssembler customerAssembler;
 
+    /**
+     * Retrieves a single customer by its unique identifier.
+     *
+     * <p>The response includes HATEOAS links such as:
+     * <ul>
+     *     <li>self link (GET /api/v1/customers/{id})</li>
+     *     <li>link to customer collection (GET /api/v1/customers)</li>
+     * </ul>
+     *
+     * @param id the unique id of the customer
+     * @return the customer wrapped in an EntityModel with hypermedia links
+     */
     @GetMapping("/{id}")
     public EntityModel<CustomerResponseDto> getCustomerById(@PathVariable UUID id) {
         return customerAssembler.toModel(customerService.getCustomerById(id));

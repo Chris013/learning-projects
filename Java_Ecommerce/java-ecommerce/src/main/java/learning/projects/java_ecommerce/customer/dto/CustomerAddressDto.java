@@ -18,4 +18,4 @@ public record CustomerAddressDto(
     String countryIso,
     String countryName,
     AddressType addressType // z.B. "RECHNUNG" oder "LIEFERUNG" aus der Brückentabelle
-) { } //TODO need to Adjust these and the mapper
+) { }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import learning.projects.java_ecommerce.core.idempotency.annotation.Idempotent;
 import learning.projects.java_ecommerce.product.assembler.ProductModelAssembler;
 import learning.projects.java_ecommerce.product.dto.ProductDto;
 import learning.projects.java_ecommerce.product.dto.ProductSearchCriteria;
@@ -91,45 +92,10 @@ public class ProductController {
      * @return created product wrapped in EntityModel
      */
     @PostMapping
+    @Idempotent
     public ResponseEntity<EntityModel<ProductDto>> createProduct(@RequestHeader("Idempotency-Key") String key, @RequestBody ProductDto dto) {
 
-        //TODO: use Redis instead of normal DB for this
-        //TODO: instead of implementing this in every endpoint, implement the IdempotencyInterceptor
-
-        /*String endpoint = "POST:/products";
-
-        // 1. Check existing request
-        var existing = idempotencyService.get(key, endpoint);
-
-        if (existing.isPresent()) {
-            IdempotencyRecord record = existing.get();
-
-            return ResponseEntity
-                    .status(record.getStatusCode())
-                    .body(objectMapper.readValue(
-                            record.getResponseBody(),
-                            ProductResponse.class
-                    ));
-        }
-        
-        2. If same key but different payload:
-        if (!existing.requestHash.equals(currentHash)) {
-            throw new IllegalStateException("Idempotency-Key reused with different payload");
-        }
-        */
-
         ProductDto product = productService.createProduct(dto);
-
-        // 3. Store result
-        /*IdempotencyRecord record = new IdempotencyRecord();
-        record.setIdempotencyKey(key);
-        record.setEndpoint(endpoint);
-        record.setRequestHash(hashService.hash(request));
-        record.setResponseBody(objectMapper.writeValueAsString(response));
-        record.setStatusCode(201);
-        record.setCreatedAt(Instant.now());
-
-        idempotencyService.save(record);*/
 
         EntityModel<ProductDto> entityModel = productAssembler.toModel(product);
 

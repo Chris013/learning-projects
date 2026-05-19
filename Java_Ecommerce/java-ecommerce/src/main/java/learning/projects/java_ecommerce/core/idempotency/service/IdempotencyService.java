@@ -1,8 +1,11 @@
-package learning.projects.java_ecommerce.core.idempotency;
+package learning.projects.java_ecommerce.core.idempotency.service;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+
+import learning.projects.java_ecommerce.core.idempotency.model.IdempotencyRecord;
+import learning.projects.java_ecommerce.core.idempotency.repo.IdempotencyRepository;
 
 @Service
 public class IdempotencyService {

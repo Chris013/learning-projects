@@ -1,6 +1,8 @@
-package learning.projects.java_ecommerce.core.idempotency;
+package learning.projects.java_ecommerce.core.idempotency.model;
 
 import java.time.Instant;
+
+import org.springframework.http.HttpStatusCode;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -27,7 +29,7 @@ public class IdempotencyRecord {
     @Lob
     private String responseBody;
 
-    private int statusCode;
+    private HttpStatusCode statusCode;
 
     private Instant createdAt;
 

@@ -1,4 +1,4 @@
-package learning.projects.java_ecommerce.core.idempotency;
+package learning.projects.java_ecommerce.core.idempotency.service;
 
 import org.springframework.stereotype.Service;
 import org.apache.commons.codec.digest.DigestUtils;

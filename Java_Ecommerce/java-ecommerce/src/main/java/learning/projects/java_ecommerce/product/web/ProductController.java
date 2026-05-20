@@ -3,8 +3,13 @@ package learning.projects.java_ecommerce.product.web;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,19 +24,23 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import learning.projects.java_ecommerce.core.idempotency.annotation.Idempotent;
 import learning.projects.java_ecommerce.product.assembler.ProductModelAssembler;
+import learning.projects.java_ecommerce.product.dto.BulkCreateResponse;
 import learning.projects.java_ecommerce.product.dto.ProductDto;
 import learning.projects.java_ecommerce.product.dto.ProductSearchCriteria;
+import learning.projects.java_ecommerce.product.model.ProductId;
+import learning.projects.java_ecommerce.product.model.Product_;
 import learning.projects.java_ecommerce.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
-@Tag(name = "Product Management", description = "APIs for managing products")
+@Tag(name = "Product Service", description = "APIs for managing products")
 public class ProductController {
 
     private final ProductService productService;
     private final ProductModelAssembler productAssembler;
+    private final PagedResourcesAssembler<ProductDto> pagedAssembler;
 
     /*private final IdempotencyService idempotencyService;
     private final RequestHashService hashService;
@@ -50,13 +59,14 @@ public class ProductController {
      * @return a collection of product resources wrapped in HATEOAS metadata
      */
     @GetMapping
-    public CollectionModel<EntityModel<ProductDto>> getAllProducts() {
+    public ResponseEntity<PagedModel<EntityModel<ProductDto>>> getAllProducts(
+        @PageableDefault(size = 20, sort = Product_.NAME) Pageable pageable) {
 
-        List<ProductDto> products = productService.getAllProducts();
+        Page<ProductDto> products = productService.getAllProducts(pageable);
 
-        CollectionModel<EntityModel<ProductDto>> collectionModel = productAssembler.toCollectionModel(products);
+        PagedModel<EntityModel<ProductDto>> pagedModel = pagedAssembler.toModel(products, productAssembler);
 
-        return collectionModel;
+        return ResponseEntity.ok(pagedModel);
     }
 
     /**
@@ -119,13 +129,15 @@ public class ProductController {
      * @return collection of created product resources
      */
     @PostMapping("/bulk")
-    public ResponseEntity<CollectionModel<EntityModel<ProductDto>>> createProducts(@RequestBody List<ProductDto> dtos) {
+    public ResponseEntity<BulkCreateResponse> createProducts(@RequestBody List<ProductDto> dtos) {
 
         List<ProductDto> savedProducts = productService.createAllProducts(dtos);
 
-        CollectionModel<EntityModel<ProductDto>> collectionModel = productAssembler.toCollectionModel(savedProducts);
+        List<ProductId> ids = savedProducts.stream()
+                    .map(dto -> dto.productId())
+                    .toList();
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(collectionModel);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new BulkCreateResponse(savedProducts.size(), ids));
     }
     
     /**
@@ -181,10 +193,15 @@ public class ProductController {
      * @see ProductService#searchProductsByCriteria(ProductSearchCriteria)
      * @see ProductModelAssembler
      */
-    @GetMapping("/search")
-    public CollectionModel<EntityModel<ProductDto>> getCityByCriteria(@RequestBody ProductSearchCriteria searchCriteria) {
-        List<ProductDto> results = productService.searchProductsByCriteria(searchCriteria);
+    @PostMapping("/search")
+    public ResponseEntity<PagedModel<EntityModel<ProductDto>>> getProductByCriteria(
+        @RequestBody ProductSearchCriteria searchCriteria,
+        @PageableDefault(size = 20, sort = Product_.NAME) Pageable pageable) {
 
-        return productAssembler.toCollectionModel(results);
+        Page<ProductDto> results = productService.searchProductsByCriteria(searchCriteria, pageable);
+
+        PagedModel<EntityModel<ProductDto>> pagedModel = pagedAssembler.toModel(results, productAssembler);
+
+        return ResponseEntity.ok(pagedModel);
     }
 }

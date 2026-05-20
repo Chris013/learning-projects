@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +28,9 @@ public class ProductService {
 
     private final ProductRepository productRepo;
 
-    public List<ProductDto> getAllProducts() {
-        return productRepo.findAll().stream()
-            .map(ProductMapper::toDto)
-            .toList();
+    public Page<ProductDto> getAllProducts(Pageable pageable) {
+        return productRepo.findAll(pageable)
+            .map(ProductMapper::toDto);
     }
 
     public ProductDto getProductById(UUID id) {
@@ -76,7 +77,7 @@ public class ProductService {
         }
     }
 
-    public List<ProductDto> searchProductsByCriteria(ProductSearchCriteria searchCriteria) {
+    public Page<ProductDto> searchProductsByCriteria(ProductSearchCriteria searchCriteria, Pageable pageable) {
 
             Specification<Product> spec = Specification
             .where(ProductSpecification.hasProductId(searchCriteria.productId()))
@@ -93,9 +94,8 @@ public class ProductService {
             .and(ProductSpecification.priceAbove(searchCriteria.priceMin()))
             .and(ProductSpecification.priceBelow(searchCriteria.priceMax()));
 
-        return productRepo.findAll(spec).stream()
-        .map(ProductMapper::toDto)
-        .toList();
+        return productRepo.findAll(spec, pageable)
+        .map(ProductMapper::toDto);
     }
 
 }

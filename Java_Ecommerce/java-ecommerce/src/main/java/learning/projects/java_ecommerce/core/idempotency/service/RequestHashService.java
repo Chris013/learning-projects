@@ -5,14 +5,13 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class RequestHashService {
 
     private final ObjectMapper objectMapper;
-
-    public RequestHashService(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
-    }
 
     public String hash(Object body) {
         try {

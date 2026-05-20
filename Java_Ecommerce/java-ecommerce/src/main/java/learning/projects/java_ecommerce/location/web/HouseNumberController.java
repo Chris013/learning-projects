@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import learning.projects.java_ecommerce.location.assembler.HouseNumberModelAssembler;
 import learning.projects.java_ecommerce.location.dto.HouseNumberDto;
 import learning.projects.java_ecommerce.location.dto.HouseNumberSearchCriteria;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/v1/house-numbers")
 @RequiredArgsConstructor
+@Tag(name = "Housenumber Service", description = "APIs for managing house numbers")
 public class HouseNumberController {
 
     private final HouseNumberService houseNumberService;

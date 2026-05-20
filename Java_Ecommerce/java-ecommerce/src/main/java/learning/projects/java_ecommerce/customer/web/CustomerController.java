@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import learning.projects.java_ecommerce.customer.assembler.CustomerModelAssembler;
 import learning.projects.java_ecommerce.customer.dto.CustomerCreateRequestDto;
 import learning.projects.java_ecommerce.customer.dto.CustomerResponseDto;
@@ -22,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/v1/customers")
 @RequiredArgsConstructor
+@Tag(name = "Customer Service", description = "APIs for managing customers")
 public class CustomerController {
 
     private final CustomerService customerService;

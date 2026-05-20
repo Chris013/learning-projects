@@ -8,7 +8,6 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
-import learning.projects.java_ecommerce.location.model.Country;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

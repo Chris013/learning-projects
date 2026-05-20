@@ -80,6 +80,7 @@
 			<version>1.16.0</version>
 		</dependency>
 
+		<!-- Adds Entity_ on compile to have a static reference on specific fields in an Entity-->
 		<dependency>
 			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-jpamodelgen</artifactId>

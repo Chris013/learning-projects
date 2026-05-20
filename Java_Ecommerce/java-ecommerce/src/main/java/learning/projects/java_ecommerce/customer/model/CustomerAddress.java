@@ -33,13 +33,21 @@ public class CustomerAddress {
 
     public static final class DbSchema {
         public static final String TABLE = "customer_address";
-        public static final String COL_ID = "customer_address_id";
+        public static final String PK_COL_ID = "customer_address_id";
         public static final String COL_ADR_TYPE = "address_type";
-        public static final String FK_CUSTOMER = "fk_customer";
-        public static final String FK_COUNTRY = "fk_country";
-        public static final String FK_CITY = "fk_city";
-        public static final String FK_STREET = "fk_street";
-        public static final String FK_HOUSENUMBER = "fk_housenumber";
+        public static final String FK_COL_CUSTOMER = "fk_customer";
+        public static final String FK_COL_COUNTRY = "fk_country";
+        public static final String FK_COL_CITY = "fk_city";
+        public static final String FK_COL_STREET = "fk_street";
+        public static final String FK_COL_HOUSENUMBER = "fk_housenumber";
+    }
+
+    public static final class Constraints {
+        public static final String FK_CUSTOMER_ADDRESS_TO_CUSTOMER = "fk_customer_address_to_customer";
+        public static final String FK_CUSTOMER_ADDRESS_TO_COUNTRY = "fk_customer_address_to_country";
+        public static final String FK_CUSTOMER_ADDRESS_TO_CITY = "fk_customer_address_to_city";
+        public static final String FK_CUSTOMER_ADDRESS_TO_STREET = "fk_customer_address_to_street";
+        public static final String FK_CUSTOMER_ADDRESS_TO_HOUSE_NUMBER = "fk_customer_address_to_house_number";
     }
 
     @Id
@@ -47,23 +55,23 @@ public class CustomerAddress {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = DbSchema.FK_CUSTOMER, referencedColumnName = Customer.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_CUSTOMER), nullable = false)
+    @JoinColumn(name = DbSchema.FK_COL_CUSTOMER, referencedColumnName = Customer.DbSchema.PK_COL_ID, foreignKey = @ForeignKey(name = Constraints.FK_CUSTOMER_ADDRESS_TO_CUSTOMER), nullable = false)
     private Customer customer;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = DbSchema.FK_COUNTRY, referencedColumnName = Country.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_COUNTRY), nullable = false)
+    @JoinColumn(name = DbSchema.FK_COL_COUNTRY, referencedColumnName = Country.DbSchema.PK_COL_ID, foreignKey = @ForeignKey(name = Constraints.FK_CUSTOMER_ADDRESS_TO_COUNTRY), nullable = false)
     private Country country;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = DbSchema.FK_CITY, referencedColumnName = City.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_CITY), nullable = false)
+    @JoinColumn(name = DbSchema.FK_COL_CITY, referencedColumnName = City.DbSchema.PK_COL_ID, foreignKey = @ForeignKey(name = Constraints.FK_CUSTOMER_ADDRESS_TO_CITY), nullable = false)
     private City city;
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = DbSchema.FK_STREET, referencedColumnName = Street.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_STREET), nullable = false)
+    @JoinColumn(name = DbSchema.FK_COL_STREET, referencedColumnName = Street.DbSchema.PK_COL_ID, foreignKey = @ForeignKey(name = Constraints.FK_CUSTOMER_ADDRESS_TO_STREET), nullable = false)
     private Street street;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = DbSchema.FK_HOUSENUMBER, referencedColumnName = HouseNumber.DbSchema.COL_ID, foreignKey = @ForeignKey(name = DbSchema.FK_HOUSENUMBER), nullable = false)
+    @JoinColumn(name = DbSchema.FK_COL_HOUSENUMBER, referencedColumnName = HouseNumber.DbSchema.PK_COL_ID, foreignKey = @ForeignKey(name = Constraints.FK_CUSTOMER_ADDRESS_TO_HOUSE_NUMBER), nullable = false)
     private HouseNumber houseNumber;
 
     @Enumerated(EnumType.STRING) // Saves "RECHNUNG" instead of 0 in the DB

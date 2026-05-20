@@ -26,19 +26,23 @@ public class Street {
 
     public static final class DbSchema {
         public static final String TABLE = "street";
-        public static final String COL_ID = "street_id";
+        public static final String PK_COL_ID = "street_id";
         public static final String COL_STREET = "street_name";
-        public static final String FK_CITY = "fk_city";
+        public static final String FK_COL_CITY = "fk_city";
+    }
+
+    public static final class Constraints {
+        public static final String FK_STREET_TO_CITY = "fk_street_to_city";
     }
 
     @EmbeddedId
-    @AttributeOverride(name = "value", column = @Column(name = DbSchema.COL_ID))
+    @AttributeOverride(name = "value", column = @Column(name = DbSchema.PK_COL_ID))
     private StreetId id;
 
     @Column(name = DbSchema.COL_STREET, nullable = false)
     private String streetName;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = DbSchema.FK_CITY, nullable = false, foreignKey = @ForeignKey(name = City.DbSchema.COL_ID))
+    @JoinColumn(name = DbSchema.FK_COL_CITY, nullable = false, foreignKey = @ForeignKey(name = Constraints.FK_STREET_TO_CITY))
     private City city;
 }

@@ -8,6 +8,7 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +16,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = Customer.DbSchema.TABLE)
+@Table(
+    name = Customer.DbSchema.TABLE,
+    uniqueConstraints = {
+        @UniqueConstraint(name = Customer.Constraints.UQ_USERNAME, columnNames = Customer.DbSchema.COL_USERNAME),
+        @UniqueConstraint(name = Customer.Constraints.UQ_EMAIL, columnNames = Customer.DbSchema.COL_EMAIL)
+    },
+    indexes = {}
+)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,15 +33,20 @@ public class Customer {
 
     public static final class DbSchema {
         public static final String TABLE = "customer";
-        public static final String COL_ID = "customer_id";
+        public static final String PK_COL_ID = "customer_id";
         public static final String COL_FIRSTNAME = "firstname";
         public static final String COL_LASTNAME = "lastname";
         public static final String COL_EMAIL = "email_address";
         public static final String COL_USERNAME = "username";
     }
 
+    public static final class Constraints {
+        public static final String UQ_USERNAME = "uq_customer_username";
+        public static final String UQ_EMAIL = "uq_customer_email_address";
+    }
+
     @EmbeddedId
-    @AttributeOverride(name = "value", column = @Column(name = DbSchema.COL_ID))
+    @AttributeOverride(name = "value", column = @Column(name = DbSchema.PK_COL_ID))
     private CustomerId customerId;
 
     @Column(name = DbSchema.COL_USERNAME, unique = true, nullable = false)

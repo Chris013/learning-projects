@@ -16,7 +16,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = City.DbSchema.TABLE)
+@Table(
+    name = City.DbSchema.TABLE
+)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,14 +28,18 @@ public class City {
 
     public static final class DbSchema {
         public static final String TABLE = "city";
-        public static final String COL_ID = "city_id";
+        public static final String PK_COL_ID = "city_id";
         public static final String COL_NAME = "city_name";
         public static final String COL_POSTAL = "zip_code";
-        public static final String FK_COUNTRY = "country";
+        public static final String FK_COL_COUNTRY = "country_fk";
+    }
+
+    public static final class Constraints {
+        public static final String FK_CITY_TO_COUNTRY = "fk_city_to_country";
     }
 
     @EmbeddedId
-    @AttributeOverride(name = "value", column = @Column(name = DbSchema.COL_ID))
+    @AttributeOverride(name = "value", column = @Column(name = DbSchema.PK_COL_ID))
     private CityId id;
 
     @Column(name = DbSchema.COL_NAME, nullable = false)
@@ -43,6 +49,6 @@ public class City {
     private String zipCode;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = DbSchema.FK_COUNTRY, nullable = false, foreignKey = @ForeignKey(name = Country.DbSchema.COL_ID))
+    @JoinColumn(name = DbSchema.FK_COL_COUNTRY, nullable = false, foreignKey = @ForeignKey(name = Constraints.FK_CITY_TO_COUNTRY))
     private Country country;
 }

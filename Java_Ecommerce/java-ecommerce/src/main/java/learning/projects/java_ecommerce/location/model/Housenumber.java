@@ -26,20 +26,24 @@ public class HouseNumber {
 
     public static final class DbSchema {
         public static final String TABLE = "house_number";
-        public static final String COL_ID = "house_number_id";
+        public static final String PK_COL_ID = "house_number_id";
         public static final String COL_HOUSE_NUMBER = "number";
-        public static final String FK_STREET = "fk_street";
+        public static final String FK_COL_STREET = "fk_street";
+    }
+
+    public static final class Constraints {
+        public static final String FK_HOUSE_NUMBER_TO_STREET = "fk_house_number_to_street";
     }
 
     @EmbeddedId
-    @AttributeOverride(name = "value", column = @Column(name = DbSchema.COL_ID))
+    @AttributeOverride(name = "value", column = @Column(name = DbSchema.PK_COL_ID))
     private HouseNumberId id;
 
     @Column(name = DbSchema.COL_HOUSE_NUMBER, nullable = false)
     private String houseNumber;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = DbSchema.FK_STREET, nullable = false, foreignKey = @ForeignKey(name = Street.DbSchema.COL_ID))
+    @JoinColumn(name = DbSchema.FK_COL_STREET, nullable = false, foreignKey = @ForeignKey(name = Constraints.FK_HOUSE_NUMBER_TO_STREET))
     private Street street;
 
 }

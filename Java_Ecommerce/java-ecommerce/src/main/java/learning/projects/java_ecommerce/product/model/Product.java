@@ -7,6 +7,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import learning.projects.java_ecommerce.location.model.Country;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +16,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = Product.DbSchema.TABLE)
+@Table(
+    name = Product.DbSchema.TABLE,
+        uniqueConstraints = {
+        @UniqueConstraint(name = Product.Constraints.UQ_BARCODE, columnNames = Product.DbSchema.COL_BARCODE)
+    },
+    indexes = {}
+)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,7 +32,7 @@ public class Product {
 
     public static final class DbSchema{
         public static final String TABLE = "product";
-        public static final String COL_ID = "product_id";
+        public static final String PK_COL_ID = "product_id";
         public static final String COL_BARCODE = "barcode";
         public static final String COL_NAME = "name";
         public static final String COL_DESCRIPTION = "description";
@@ -32,8 +40,12 @@ public class Product {
         public static final String COL_PRICE = "price";
     }
 
+    public static final class Constraints {
+        public static final String UQ_BARCODE = "uq_product_barcode";
+    }
+
     @EmbeddedId
-    @AttributeOverride(name = "value", column = @Column(name = DbSchema.COL_ID))
+    @AttributeOverride(name = "value", column = @Column(name = DbSchema.PK_COL_ID))
     private ProductId productId;
 
     @Column(name = DbSchema.COL_BARCODE, nullable = false)
